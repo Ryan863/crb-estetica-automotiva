@@ -1,0 +1,165 @@
+@import "tailwindcss";
+
+@layer theme {
+  :root {
+    --bg-main: #060607;
+    --surface-dark: #0e0e11;
+    --surface-card: #111115;
+    --surface-card-hover: #16161c;
+    --accent-orange: #FF5100;
+    --accent-orange-hover: #ff6821;
+    --accent-orange-glow: rgba(255, 81, 0, 0.22);
+    --text-white: #FAFAFA;
+    --text-muted: #8e8e98;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-orange: rgba(255, 81, 0, 0.25);
+  }
+}
+
+:root {
+  --font-display: 'Space Grotesk', 'Outfit', sans-serif;
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Base Reset & Core Styles */
+html {
+  background-color: #060607;
+  color: #FAFAFA;
+  color-scheme: dark;
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: #060607;
+  color: #FAFAFA;
+  font-family: var(--font-sans);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+::selection {
+  background-color: #FF5100;
+  color: #FAFAFA;
+}
+
+/* Typography Helpers */
+.font-display {
+  font-family: var(--font-display);
+}
+
+.text-gradient-orange {
+  background: linear-gradient(135deg, #FAFAFA 40%, #FF5100 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gradient-accent {
+  background: linear-gradient(90deg, #FF5100 0%, #ff8c42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* Hero Blend & Atmospheric Gradients */
+.hero-blend-overlay {
+  background: linear-gradient(
+    180deg,
+    rgba(6, 6, 7, 0.3) 0%,
+    rgba(6, 6, 7, 0.75) 60%,
+    #060607 100%
+  );
+}
+
+.hero-radial-glow {
+  background: radial-gradient(
+    circle at 75% 35%,
+    rgba(255, 81, 0, 0.14) 0%,
+    rgba(255, 81, 0, 0.03) 45%,
+    transparent 70%
+  );
+}
+
+.hero-bottom-fade {
+  background: linear-gradient(
+    to bottom,
+    transparent 0%,
+    rgba(6, 6, 7, 0.8) 60%,
+    #060607 100%
+  );
+}
+
+/* 21st.dev Glowing Border & Spotlight Cards */
+.crb-glass-card {
+  background: rgba(14, 14, 17, 0.65);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.crb-glass-card:hover {
+  border-color: rgba(255, 81, 0, 0.35);
+  box-shadow: 0 12px 36px -10px rgba(255, 81, 0, 0.15);
+  transform: translateY(-2px);
+}
+
+.glow-pill {
+  position: relative;
+}
+.glow-pill::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(90deg, rgba(255, 81, 0, 0.8), rgba(255, 255, 255, 0.1));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+}
+
+/* Subtle Animated Micro-Pulse for WhatsApp CTA */
+@keyframes ping-subtle {
+  0% {
+    transform: scale(1);
+    opacity: 0.8;
+  }
+  70% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.6);
+    opacity: 0;
+  }
+}
+
+.animate-pulse-ring {
+  animation: ping-subtle 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #060607;
+}
+::-webkit-scrollbar-thumb {
+  background: #1f1f26;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #FF5100;
+}
+
+/* Accessibility: Reduced Motion */
+@media (prefers-reduced-motion: reduce) {
+  *, ::before, ::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
